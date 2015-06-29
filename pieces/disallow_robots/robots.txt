@@ -1,0 +1,3 @@
+# webnite generated robots.txt
+User-Agent: *
+Disallow: /
