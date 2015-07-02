@@ -66,4 +66,8 @@ def bfoundation(siten, kitn, rob):
 
     ## All done!
     output.out("Done.")
+
+    ## Display the final message detailing successfully completion.
+    output.outblank()
+    output.out("Your new Foundation website has been successfully created in sites/" + siten)
     output.outblank()

@@ -4,6 +4,10 @@
 ## Released under the GNU General Public License v2.0
 ## -----------------------------------------------------------------------
 
+## Modules for system operations like moving and deleting files.
+import os
+import shutil
+import sys
 ## Module required for dealing with command line arguments.
 import argparse
 ## Module required for dealing with compressed archives.
@@ -35,6 +39,29 @@ kitarg.add_argument("-b", action="store_true",help="Create a new site using Boot
 clparse.add_argument("-dr", action="store_true",help="Disallow robots to crawl your site")
 clargs = clparse.parse_args()
 
+## The function that checks if a site already exists and gives the option to overwrite if so.
+def checkse(loc):
+    if(os.path.isdir(loc) == True):
+        output.outblank()
+        output.out("sites/" + clargs.sitename + " already exists! Overwrite? (Y/N)")
+        ovrc = input(" > ")
+
+        ## Log user input into the logfile for possible future error checking purposes
+        output.logonly("User input: " + ovrc)
+
+        ## Handle the input and either overwrite the existing site or exit webnite.
+        if(ovrc == "y" or ovrc == "Y"):
+            output.outblank()
+            output.out("Overwriting...")
+            shutil.rmtree(loc)
+
+        else:
+            output.outblank()
+            output.out("Aborting...")
+            output.outblank()
+            sys.exit()
+
+
 ## If the disallow robots argument was passed through clparse.
 if clargs.dr:
     robots = 0
@@ -43,6 +70,9 @@ else:
 
 ## If the foundation argument was passed through clparse.
 if clargs.f:
+
+    ## Call the function that checks if a site with the same name exists already.
+    checkse("sites/" + clargs.sitename)
 
     ## Tell the user that we're starting up.
     output.outblank()
