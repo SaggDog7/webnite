@@ -16,7 +16,8 @@ import output
 ## Where siten is the name of the site passed from webnite.py
 ## Where kitn is the name of the kit (foundation) passed from webnite.py
 ## Where rob is if robots are allowed or disallowed
-def bfoundation(siten, kitn, rob):
+## Where fav is if the default placeholder favicon is to be skipped or not
+def bfoundation(siten, kitn, rob, fav):
 
     ## Grab the kit archive.
     output.out("Grabbing kits/" + kitn + ".zip...")
@@ -40,7 +41,6 @@ def bfoundation(siten, kitn, rob):
 
     ## See if robots are allowed and copy the corresponding robots.txt file.
     if rob == 1:
-        output.out("Robots are allowed to crawl this site.")
         shutil.copyfile("pieces/allow_robots/robots.txt","sites/" + siten + "/robots.txt")
         output.out("Created " + "sites/" + siten + "/robots.txt")
     else:
@@ -52,9 +52,12 @@ def bfoundation(siten, kitn, rob):
     shutil.copyfile("pieces/foundation_humans/humans.txt","sites/" + siten + "/humans.txt")
     output.out("Created " + "sites/" + siten + "/humans.txt")
 
-    ## Copy the favicon.ico file.
-    shutil.copyfile("pieces/favicon/favicon.ico","sites/" + siten + "/favicon.ico")
-    output.out("Created " + "sites/" + siten + "/favicon.ico")
+    ## If -sf was argued we skip adding the default placeholder favicon.
+    if fav ==1:
+        shutil.copyfile("pieces/favicon/favicon.ico","sites/" + siten + "/favicon.ico")
+        output.out("Created " + "sites/" + siten + "/favicon.ico")
+    else:
+        output.out("Skipping creating the default placeholder favicon...")
 
     ## Copy the logo.png file.
     shutil.copyfile("logo.png","sites/" + siten + "/img/logo.png")

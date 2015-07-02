@@ -27,6 +27,9 @@ kit = ""
 ## Define the robots variable. 1 = allow, 0 = disallow
 robots = 1
 
+## Define the favicon variable. 1 = use favicon, 0 = don't use favicon
+favicon = 1
+
 ## Define the command line argument parser.
 clparse = argparse.ArgumentParser()
 
@@ -37,6 +40,7 @@ kitarg = clparse.add_mutually_exclusive_group(required = True)
 kitarg.add_argument("-f", action="store_true",help="Create a new site using Foundation")
 kitarg.add_argument("-b", action="store_true",help="Create a new site using Bootstrap")
 clparse.add_argument("-dr", action="store_true",help="Disallow robots to crawl your site")
+clparse.add_argument("-sf", action="store_true",help="Skip creating the default placeholder favicon")
 clargs = clparse.parse_args()
 
 ## The function that checks if a site already exists and gives the option to overwrite if so.
@@ -46,7 +50,7 @@ def checkse(loc):
         output.out("sites/" + clargs.sitename + " already exists! Overwrite? (Y/N)")
         ovrc = input(" > ")
 
-        ## Log user input into the logfile for possible future error checking purposes
+        ## Log user input into the logfile for possible future error checking purposes.
         output.logonly("User input: " + ovrc)
 
         ## Handle the input and either overwrite the existing site or exit webnite.
@@ -68,6 +72,12 @@ if clargs.dr:
 else:
     robots = 1
 
+## If the skip favicon argument was passed through clparse.
+if clargs.sf:
+    favicon = 0
+else:
+    favicon = 1
+
 ## If the foundation argument was passed through clparse.
 if clargs.f:
 
@@ -83,4 +93,4 @@ if clargs.f:
     kit = "foundation"
 
     ## Start building foundation by passing the necessary arguments to bfoundation.
-    build_foundation.bfoundation(clargs.sitename, kit, robots)
+    build_foundation.bfoundation(clargs.sitename, kit, robots, favicon)
