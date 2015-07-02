@@ -26,7 +26,7 @@ def bfoundation(siten, kitn, rob):
     output.out("Extracting " + kitn + ".zip to " "sites/" + siten + "...")
     kitarchive.extractall("sites/" + siten)
 
-    ## Cleanup the defualt files. We do this because webnite uses its own.
+    ## Cleanup the default files. We do this because webnite uses its own.
     output.out("Removing default files...")
     if os.path.isfile("sites/" + siten + "/index.html"):
         os.remove("sites/" + siten + "/index.html")
