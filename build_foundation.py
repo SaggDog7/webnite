@@ -51,6 +51,17 @@ def bfoundation(siten, kitn, rob):
     shutil.copyfile("pieces/foundation_humans/humans.txt","sites/" + siten + "/humans.txt")
     output.out("Created " + "sites/" + siten + "/humans.txt")
 
+    ## Copy the favicon.ico file.
+    shutil.copyfile("pieces/favicon/favicon.ico","sites/" + siten + "/favicon.ico")
+    output.out("Created " + "sites/" + siten + "/favicon.ico")
+
+    ## Copy the logo.png file.
+    shutil.copyfile("logo.png","sites/" + siten + "/img/logo.png")
+    output.out("Created " + "sites/" + siten + "/img/logo.png")
+
+    ## Finally, copy the index.html file.
+    shutil.copyfile("pieces/foundation_index/index.html","sites/" + siten + "/index.html")
+    output.out("Created " + "sites/" + siten + "/index.html")
 
     ## All done!
     output.out("Done.")

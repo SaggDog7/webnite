@@ -49,5 +49,5 @@ if clargs.f:
     ## Set the kit to foundation.
     kit = "foundation"
 
-    ## Start building foundation by passing the sitename and kit to bfoundation.
+    ## Start building foundation by passing the necessary arguments to bfoundation.
     build_foundation.bfoundation(clargs.sitename, kit, robots)
