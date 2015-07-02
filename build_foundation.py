@@ -12,9 +12,10 @@ import zipfile
 ## Module that displays and logs output.
 import output
 
-## This functions creates structured sites from the foundation framework.
+## This function creates structured sites from the foundation framework.
 ## Where siten is the name of the site passed from webnite.py
 ## Where kitn is the name of the kit (foundation) passed from webnite.py
+## Where rob is if robots are allowed or disallowed
 def bfoundation(siten, kitn, rob):
 
     ## Grab the kit archive.

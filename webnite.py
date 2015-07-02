@@ -27,8 +27,11 @@ robots = 1
 clparse = argparse.ArgumentParser()
 
 ## Define the command line arguments themselves.
+## A mutually exclusive group, kitarg, disallows the user to mix up frameworks.
 clparse.add_argument("sitename", help="Define the name of the site to be created")
-clparse.add_argument("-f", action="store_true",help="Create a new site using Foundation")
+kitarg = clparse.add_mutually_exclusive_group()
+kitarg.add_argument("-f", action="store_true",help="Create a new site using Foundation")
+kitarg.add_argument("-b", action="store_true",help="Create a new site using Bootstrap")
 clparse.add_argument("-dr", action="store_true",help="Disallow robots to crawl your site")
 clargs = clparse.parse_args()
 
