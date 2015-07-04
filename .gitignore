@@ -1,0 +1,4 @@
+*.pyc
+sites/
+__pycache__/
+WEBNITE_LOG.txt

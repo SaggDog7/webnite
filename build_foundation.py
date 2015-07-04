@@ -21,11 +21,11 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
 
     ## Grab the kit archive.
     output.out("Grabbing kits/" + kitName + ".zip...")
-    kitarchive = zipfile.ZipFile("kits/" + kitName + ".zip")
+    kitArchive = zipfile.ZipFile("kits/" + kitName + ".zip")
 
     ## Extract the kit to the site directory.
     output.out("Extracting " + kitName + ".zip to " "sites/" + siteName + "...")
-    kitarchive.extractall("sites/" + siteName)
+    kitArchive.extractall("sites/" + siteName)
 
     ## Cleanup the default files. We do this because webnite uses its own.
     output.out("Removing default files...")
