@@ -79,4 +79,4 @@ if __name__ == '__main__':
         activeKit = "foundation"
 
         ## Start building foundation by passing the necessary arguments to buildFoundation.
-        build_foundation.buildFoundation(cmdLineArgs.projectName, kit, cmdLineArgs.dr, cmdLineArgs.sf)
+        build_foundation.buildFoundation(cmdLineArgs.projectName, activeKit, cmdLineArgs.dr, cmdLineArgs.sf)
