@@ -40,7 +40,7 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
         output.out("Deleted " + "sites/" + siteName + "/humans.txt")
 
     ## See if robots are allowed and copy the corresponding robots.txt file.
-    if disallowRobots == 1:
+    if disallowRobots:
         shutil.copyfile("pieces/allow_robots/robots.txt","sites/" + siteName + "/robots.txt")
         output.out("Created " + "sites/" + siteName + "/robots.txt")
     else:

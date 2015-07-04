@@ -21,7 +21,7 @@ import build_foundation
 
 ## The function that checks if a site already exists and gives the option to overwrite if so.
 def doesSiteExist(sitePath):
-    if(os.path.isdir(sitePath) == True):
+    if(os.path.isdir(sitePath)):
         output.outblank()
         output.out(sitePath + " already exists! Overwrite? (Y/N)")
         ovrc = input(" > ")
@@ -64,18 +64,6 @@ if __name__ == '__main__':
     ## Initialize and parse command line arguments
     clargs = initArgs()
 
-    ## If the disallow robots argument was passed through clParse.
-    if clargs.dr:
-        robots = 0
-    else:
-        robots = 1
-
-    ## If the skip favicon argument was passed through clParse.
-    if clargs.sf:
-        favicon = 0
-    else:
-        favicon = 1
-
     ## If the foundation argument was passed through clParse.
     if clargs.f:
         ## Call the function that checks if a site with the same name exists already.
@@ -90,4 +78,4 @@ if __name__ == '__main__':
         kit = "foundation"
 
         ## Start building foundation by passing the necessary arguments to buildFoundation.
-        build_foundation.buildFoundation(clargs.projectname, kit, robots, favicon)
+        build_foundation.buildFoundation(clargs.projectname, kit, clargs.dr, clargs.sf)
