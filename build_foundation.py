@@ -13,17 +13,13 @@ import zipfile
 import output
 
 ## This function creates structured sites from the foundation framework.
-## Where siteName is the name of the site passed from webnite.py
-## Where kitName is the name of the kit (foundation) passed from webnite.py
-## Where disallowRobots is if robots are allowed or disallowed
-## Where skipFavicon is if the default placeholder favicon is to be skipped or not
 def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
 
-    ## Grab the kit archive.
+    ## Grab the activeKit archive.
     output.out("Grabbing kits/" + kitName + ".zip...")
     kitArchive = zipfile.ZipFile("kits/" + kitName + ".zip")
 
-    ## Extract the kit to the site directory.
+    ## Extract the activeKit to the site directory.
     output.out("Extracting " + kitName + ".zip to " "sites/" + siteName + "...")
     kitArchive.extractall("sites/" + siteName)
 
@@ -40,7 +36,7 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
         output.out("Deleted " + "sites/" + siteName + "/humans.txt")
 
     ## See if robots are allowed and copy the corresponding robots.txt file.
-    if disallowRobots:
+    if disallowRobots == False:
         shutil.copyfile("pieces/allow_robots/robots.txt","sites/" + siteName + "/robots.txt")
         output.out("Created " + "sites/" + siteName + "/robots.txt")
     else:
@@ -53,7 +49,7 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
     output.out("Created " + "sites/" + siteName + "/humans.txt")
 
     ## If -sf was argued we skip adding the default placeholder favicon.
-    if skipFavicon ==1:
+    if skipFavicon == False:
         shutil.copyfile("pieces/favicon/favicon.ico","sites/" + siteName + "/favicon.ico")
         output.out("Created " + "sites/" + siteName + "/favicon.ico")
     else:
@@ -71,6 +67,6 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
     output.out("Done.")
 
     ## Display the final message detailing successfully completion.
-    output.outblank()
+    output.outBlank()
     output.out("Your new Foundation website has been successfully created in sites/" + siteName)
-    output.outblank()
+    output.outBlank()
