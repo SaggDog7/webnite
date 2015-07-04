@@ -25,9 +25,9 @@ def out(inputItems):
     logging.debug("WEBNITE: " + timeStamp + inputItems)
 
 ## This function will append to the logFile only.
-def logonly(inputItems):
+def logOnly(inputItems):
     logging.debug("WEBNITE:SYSTEM: " + timeStamp + inputItems)
 
 ## This function simply prints an empty line. Somewhat useful?
-def outblank():
+def outBlank():
     print("")
