@@ -21,14 +21,8 @@ import build_foundation
 webniteVersion = "0.0.1"
 foundationVersion = "5.5.2"
 
-## Define the kit variable.
-kit = ""
-
-## Define the robots variable. 1 = allow, 0 = disallow
-robots = 1
-
-## Define the favicon variable. 1 = use favicon, 0 = don't use favicon
-favicon = 1
+## Define the activeKit variable.
+activeKit = ""
 
 ## Define the command line argument parser.
 commandlineParse = argparse.ArgumentParser()
@@ -65,19 +59,6 @@ def checkSiteExists(siteLocation):
             output.outBlank()
             sys.exit()
 
-
-## If the disallow robots argument was passed through commandlineParse.
-if commandlineArguments.dr:
-    robots = 0
-else:
-    robots = 1
-
-## If the skip favicon argument was passed through commandlineParse.
-if commandlineArguments.sf:
-    favicon = 0
-else:
-    favicon = 1
-
 ## If the foundation argument was passed through commandlineParse.
 if commandlineArguments.f:
 
@@ -87,10 +68,10 @@ if commandlineArguments.f:
     ## Tell the user that we're starting up.
     output.outBlank()
     output.out("Creating new site using Foundation " + foundationVersion + ": " + commandlineArguments.projectname)
-    output.out("Setting active kit to Foundation...")
+    output.out("Setting the active kit to Foundation...")
 
-    ## Set the kit to foundation.
-    kit = "foundation"
+    ## Set the activeKit to foundation.
+    activeKit = "foundation"
 
     ## Start building foundation by passing the necessary arguments to buildFoundation.
-    build_foundation.buildFoundation(commandlineArguments.projectname, kit, robots, favicon)
+    build_foundation.buildFoundation(commandlineArguments.projectname, activeKit, commandlineArguments.dr, commandlineArguments.sf)

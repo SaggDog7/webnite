@@ -15,11 +15,11 @@ import output
 ## This function creates structured sites from the foundation framework.
 def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
 
-    ## Grab the kit archive.
+    ## Grab the activeKit archive.
     output.out("Grabbing kits/" + kitName + ".zip...")
     kitArchive = zipfile.ZipFile("kits/" + kitName + ".zip")
 
-    ## Extract the kit to the site directory.
+    ## Extract the activeKit to the site directory.
     output.out("Extracting " + kitName + ".zip to " "sites/" + siteName + "...")
     kitArchive.extractall("sites/" + siteName)
 
@@ -36,7 +36,7 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
         output.out("Deleted " + "sites/" + siteName + "/humans.txt")
 
     ## See if robots are allowed and copy the corresponding robots.txt file.
-    if disallowRobots == 1:
+    if disallowRobots == False:
         shutil.copyfile("pieces/allow_robots/robots.txt","sites/" + siteName + "/robots.txt")
         output.out("Created " + "sites/" + siteName + "/robots.txt")
     else:
@@ -49,7 +49,7 @@ def buildFoundation(siteName, kitName, disallowRobots, skipFavicon):
     output.out("Created " + "sites/" + siteName + "/humans.txt")
 
     ## If -sf was argued we skip adding the default placeholder favicon.
-    if skipFavicon ==1:
+    if skipFavicon == False:
         shutil.copyfile("pieces/favicon/favicon.ico","sites/" + siteName + "/favicon.ico")
         output.out("Created " + "sites/" + siteName + "/favicon.ico")
     else:
